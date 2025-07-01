@@ -30,6 +30,7 @@
 
 <script lang="ts">
     import { goto } from "$app/navigation";
+    import { userStore } from '$lib/stores/userStore';
 
 	let auth = $state(true);
     let username = $state("");
@@ -69,6 +70,7 @@
             const data = await response.json();
             massage_box = data.message;
             massage_box_color = "green";
+            userStore.loadUser();
             goto("/");
         } catch (err) {
             console.error('Login error:', err);
@@ -79,15 +81,13 @@
 <style>
 :global(body) {
     margin: 0;
-    width: 100vw;
-    height: 100vh;
+    /* width: 100vw;
+    height: 100vh; */
     background-color: #efefef;
     display: flex;
     justify-content: center;
 }
 .root {
-    width: 100%;
-    height: 100%;
     font-size: large;
     display: flex;
     align-items: center;
