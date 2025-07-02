@@ -7,24 +7,22 @@
 	<div class="description">
 	  {@html dish.description}
 	</div>
+  {#if $userStore}
   <button class="add-to-cart" on:click={() => addToCart()}>Добавить в корзину</button>
+  {/if}
 </main>
 
 <script lang="ts">
 	import type { PageData } from './$types';
   import { type Dish } from '$lib/stores/dishStore';
 	import { userStore } from '$lib/stores/userStore';
-  import { get } from 'svelte/store';
+  import { cartStore } from '$lib/stores/cartStore';
 	export let data: PageData;
 
 	const dish = data.dish as Dish;
 
 	function addToCart() {
-		const user = get(userStore);
-		if (!user) {
-			alert('Пожалуйста, сначала войдите в систему');
-			return;
-	}
+    cartStore.addItem(dish, 1);
   }
 </script>
 

@@ -4,12 +4,15 @@
             <a href="/">Столовая</a>
             <a href="/catalog">каталог</a>
         </div>
-        {#if $userStore !== null}
+        {#if $userStore}
         <span>профиль</span>
         {:else}
         <a href="/authorization">войти</a>
         {/if}
     </header>
+    {#if $userStore}
+    <Cart/>
+    {/if}
     {@render children()}
 </div>
 
@@ -17,6 +20,7 @@
 <script lang="ts">
   import { userStore } from '$lib/stores/userStore';
   import { onMount } from 'svelte';
+  import Cart from '$lib/components/Cart.svelte';
 
   let { children } = $props();
 
