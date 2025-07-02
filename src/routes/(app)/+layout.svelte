@@ -5,7 +5,7 @@
             <a href="/catalog">каталог</a>
         </div>
         {#if $userStore}
-        <span>профиль</span>
+        <a href="/profile">профиль</a>
         {:else}
         <a href="/authorization">войти</a>
         {/if}
