@@ -3,13 +3,13 @@
     <main>
       <div class="grid">
         {#each $dishStore.filter(item => item.is_available) as dish (dish.id)}
-          <div class="card">
+          <a href={"/catalog/" + dish.id.toString()} class="card">
             <img src={dish.photo} alt={dish.name} />
             <div class="card-content">
               <h2 class="card-title">{dish.name}</h2>
               <p class="card-price">{dish.price} &bull; {dish.weight}g</p>
             </div>
-          </div>
+          </a>
         {/each}
       </div>
     </main>
